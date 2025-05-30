@@ -1,0 +1,12 @@
+1.Zivuko Wallet
+2.Hyperlocal Delivery & Pickup ==> Click & Collect
+3.Seller Empowerment Suite ==> Seller Academy, Dynamic Pricing Engine, Free Listing for SMEs with premium features
+4.Smart Product Discovery ==> AI Recommendations based on user behavior and locality(Trending Now in Your Area), Voice Search (in English & Swahili).
+5.Flexible & Local Payment Options ==> Split Payment, Mpesa STK Push, Zivuko Wallet, Card, and Pay on Delivery (Cash/Mpesa), Buy Now, Pay Later (BNPL) future
+6.Community-Driven Shopping ==> Buyer Clubs, Refer-a-Friend Bonuses, Local Reviews and user photos/videos add trust, especially for new buyers.
+7. Gamified Shopping & Rewards ==> Loyalty Points, Unlockable Badges & Levels for users and sellers
+8. Integrated Dispute Resolution & Trust Signals ==> Live order chat with seller & Zivuko support (in-app), Verified Seller Badges
+9. Eco & Social Responsibility ==> Eco-friendly packaging, Highlight Made-in-Kenya products and local artisans, Donation Matching — round up payments to support Kenyan charities or causes.
+
+nunuakwetu
+mongodb+srv://williamsisulu2003:nunuakwetu@buy.if37nre.mongodb.net/?retryWrites=true&w=majority&appName=buy
