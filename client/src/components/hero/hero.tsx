@@ -193,66 +193,7 @@ const HeroSection = () => {
       </div>
 
 
-      {/* Featured Services */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Our <span className="text-primary">Premium Features</span>
-          </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Experience shopping enhanced with innovative solutions designed for your convenience
-          </p>
-        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature) => (
-            <div
-              key={feature.name}
-              className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-all duration-300"
-            >
-              <div className={`relative p-6 ${feature.bgColor} flex items-center justify-center`}>
-                <div className="bg-white p-4 rounded-full shadow-md">
-                  {React.cloneElement(feature.icon, { className: `w-8 h-8 ${feature.textColor}` })}
-                </div>
-                {feature.image && (
-                  <Image
-                    src={feature.image}
-                    alt={feature.name}
-                    width={40}
-                    height={40}
-                    className="fill"
-                  />
-                )}
-              </div>
-
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.name}</h3>
-                <p className="text-gray-600 mb-4">{feature.description}</p>
-
-                <Link
-                  href={feature.url}
-                  className="inline-flex items-center text-primary font-medium hover:text-primary-dark transition-colors"
-                >
-                  Learn more
-                  <FiArrowRight className="ml-2" />
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* CTA Section */}
-        <div className="mt-16 bg-gradient-to-r from-primary to-primary-dark rounded-xl p-8 text-center">
-          <h3 className="text-2xl font-bold text-white mb-4">Ready to experience these features?</h3>
-          <Link
-            href="/signup"
-            className="inline-flex items-center px-6 py-3 bg-white text-primary rounded-lg font-bold shadow-lg hover:bg-gray-50 transition-colors"
-          >
-            Get Started Today
-            <FiArrowRight className="ml-2" />
-          </Link>
-        </div>
-      </div>
       {/* Promo Banner */}
       {/* <div className="bg-primary text-white py-16 px-4 sm:px-6 lg:px-8 rounded-none">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">

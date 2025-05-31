@@ -1,0 +1,102 @@
+      {/* Premium Features Section */}
+      <section className="relative bg-gradient-to-b from-gray-50 to-white py-24 overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-r from-primary/10 to-secondary/10 transform -skew-y-3 origin-top-left"></div>
+
+        <div className="max-w-7xl mx-auto px-5 sm:px-10 lg:px-8">
+          {/* Section Header */}
+          <div className="text-center mb-20">
+            <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold tracking-wide mb-4">
+              INNOVATIVE SOLUTIONS
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-5 leading-tight">
+              Elevate Your Experience With <br />
+              <span className="relative inline-block">
+                <span className="relative z-10">Our Premium Features</span>
+                <span className="absolute bottom-1 left-0 w-full h-3 bg-secondary/30 -rotate-1 z-0"></span>
+              </span>
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Discover cutting-edge solutions designed to transform your shopping experience with unparalleled convenience and innovation.
+            </p>
+          </div>
+
+          {/* Features Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {features.map((feature, index) => (
+              <div
+                key={feature.name}
+                className="group relative bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 hover:border-transparent transition-all duration-500 hover:-translate-y-2"
+              >
+                {/* Feature header with icon */}
+                <div className={`relative h-40 ${feature.bgColor} flex items-center justify-center overflow-hidden`}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-black/5"></div>
+                  <div className="relative z-10 bg-white p-5 rounded-2xl shadow-lg transform group-hover:scale-110 transition-transform duration-500">
+                    {React.cloneElement(feature.icon, {
+                      className: `w-10 h-10 ${feature.textColor}`
+                    })}
+                  </div>
+
+                  {/* Decorative shape */}
+                  <div className="absolute -bottom-20 -right-20 w-40 h-40 rounded-full bg-white/10 group-hover:scale-150 transition-transform duration-700"></div>
+
+                  {feature.image && (
+                    <Image
+                      src={feature.image}
+                      alt={feature.name}
+                      width={80}
+                      height={80}
+                      className="absolute opacity-10 right-5 bottom-5 group-hover:opacity-20 transition-opacity duration-500"
+                    />
+                  )}
+                </div>
+
+                {/* Feature content */}
+                <div className="p-8 relative">
+                  {/* Floating number */}
+                  <div className="absolute -top-8 right-8 w-16 h-16 flex items-center justify-center bg-white rounded-full shadow-md border border-gray-100 text-2xl font-bold text-primary">
+                    0{index + 1}
+                  </div>
+
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4 leading-snug">{feature.name}</h3>
+                  <p className="text-gray-600 mb-6 leading-relaxed">{feature.description}</p>
+
+                  <Link
+                    href={feature.url}
+                    className="inline-flex items-center text-primary font-semibold hover:text-primary-dark transition-colors group/link"
+                  >
+                    <span className="relative">
+                      Explore feature
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover/link:w-full transition-all duration-300"></span>
+                    </span>
+                    <FiArrowRight className="ml-2 transition-transform group-hover/link:translate-x-1" />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA Section */}
+          <div className="mt-24 relative bg-gradient-to-r from-primary to-secondary rounded-2xl p-10 text-center overflow-hidden">
+            {/* Decorative elements */}
+            <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-white/10"></div>
+            <div className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-white/10"></div>
+
+            <div className="relative z-10">
+              <h3 className="text-3xl font-bold text-white mb-6 leading-tight">
+                Ready to transform your experience?
+              </h3>
+              <p className="text-white/90 mb-8 max-w-2xl mx-auto text-lg">
+                Join thousands of satisfied customers enjoying our premium features today.
+              </p>
+              <Link
+                href="/signup"
+                className="inline-flex items-center px-8 py-4 bg-white text-primary rounded-xl font-bold shadow-lg hover:bg-gray-50 hover:shadow-xl transition-all duration-300 group"
+              >
+                Get Started Now
+                <FiArrowRight className="ml-3 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>

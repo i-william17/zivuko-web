@@ -132,8 +132,8 @@ const Header = ({ activeHeading }) => {
             <Image
               src="/1-nobg.png"
               alt="logo"
-              width={180}
-              height={180}
+              width={150}
+              height={150}
               className="cursor-pointer"
             />
           </Link>

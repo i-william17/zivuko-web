@@ -1,0 +1,212 @@
+'use client';
+
+import React from 'react';
+import { FiArrowRight, FiStar, FiShield, FiZap, FiGift, FiTruck, FiHeadphones } from 'react-icons/fi';
+
+const PremiumFeaturesSection = () => {
+  // Sample features data - replace with your actual data
+  const features = [
+    {
+      name: "AI-Powered Recommendations",
+      description: "Get personalized product suggestions powered by advanced machine learning algorithms tailored to your preferences.",
+      icon: <FiZap />,
+      bgColor: "bg-gradient-to-br from-purple-500 via-purple-600 to-indigo-600",
+      glowColor: "shadow-purple-500/25",
+      url: "/ai-recommendations"
+    },
+    {
+      name: "Premium Security",
+      description: "Bank-level encryption and advanced fraud protection to keep your transactions and data completely secure.",
+      icon: <FiShield />,
+      bgColor: "bg-gradient-to-br from-emerald-500 via-teal-600 to-cyan-600",
+      glowColor: "shadow-emerald-500/25",
+      url: "/security"
+    },
+    {
+      name: "VIP Customer Support",
+      description: "24/7 priority support with dedicated specialists available via chat, phone, or video call whenever you need.",
+      icon: <FiHeadphones />,
+      bgColor: "bg-gradient-to-br from-rose-500 via-pink-600 to-fuchsia-600",
+      glowColor: "shadow-rose-500/25",
+      url: "/support"
+    },
+    {
+      name: "Express Delivery",
+      description: "Lightning-fast delivery options including same-day and next-day shipping for your urgent needs.",
+      icon: <FiTruck />,
+      bgColor: "bg-gradient-to-br from-orange-500 via-amber-600 to-yellow-500",
+      glowColor: "shadow-orange-500/25",
+      url: "/delivery"
+    },
+    {
+      name: "Exclusive Rewards",
+      description: "Earn premium points, unlock exclusive deals, and access member-only products and early releases.",
+      icon: <FiGift />,
+      bgColor: "bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-600",
+      glowColor: "shadow-blue-500/25",
+      url: "/rewards"
+    },
+    {
+      name: "Premium Quality",
+      description: "Curated selection of premium products with guaranteed quality and authenticity verification.",
+      icon: <FiStar />,
+      bgColor: "bg-gradient-to-br from-violet-500 via-purple-600 to-pink-600",
+      glowColor: "shadow-violet-500/25",
+      url: "/quality"
+    }
+  ];
+
+  return (
+    <section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-cyan-400/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-emerald-400/10 to-teal-400/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        {/* Header Section */}
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center justify-center p-2 bg-gradient-to-r from-purple-100 to-pink-100 rounded-full mb-6">
+            <div className="flex items-center px-4 py-2 bg-white rounded-full shadow-sm">
+              <FiStar className="w-4 h-4 text-purple-600 mr-2" />
+              <span className="text-sm font-semibold text-purple-600">Premium Features</span>
+            </div>
+          </div>
+          
+          <h2 className="text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 mb-6 leading-tight">
+            Elevate Your
+            <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600">
+              Shopping Experience
+            </span>
+          </h2>
+          
+          <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+            Discover premium features designed to transform your shopping journey with 
+            cutting-edge technology, unmatched security, and personalized excellence.
+          </p>
+        </div>
+
+        {/* Features Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mb-20">
+          {features.map((feature, index) => (
+            <div
+              key={feature.name}
+              className="group relative bg-white/80 backdrop-blur-sm rounded-3xl overflow-hidden border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+              style={{
+                animationDelay: `${index * 100}ms`,
+                animation: 'fadeInUp 0.8s ease-out forwards'
+              }}
+            >
+              {/* Gradient border effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-purple-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              {/* Icon section */}
+              <div className="relative p-8 flex items-center justify-center">
+                <div className={`relative ${feature.bgColor} p-6 rounded-2xl ${feature.glowColor} shadow-2xl group-hover:shadow-3xl transition-all duration-500 group-hover:scale-110`}>
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  {React.cloneElement(feature.icon, { 
+                    className: "relative w-8 h-8 text-white drop-shadow-lg" 
+                  })}
+                </div>
+                
+                {/* Floating particles effect */}
+                <div className="absolute inset-0 overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  {[...Array(6)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="absolute w-1 h-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full animate-ping"
+                      style={{
+                        left: `${20 + (i * 15)}%`,
+                        top: `${30 + (i * 8)}%`,
+                        animationDelay: `${i * 200}ms`,
+                        animationDuration: '2s'
+                      }}
+                    ></div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Content section */}
+              <div className="relative p-8 pt-0">
+                <h3 className="text-2xl font-bold text-slate-900 mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-pink-600 transition-all duration-300">
+                  {feature.name}
+                </h3>
+                
+                <p className="text-slate-600 mb-6 leading-relaxed">
+                  {feature.description}
+                </p>
+
+                <a
+                  href={feature.url}
+                  className="group/link inline-flex items-center text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 font-bold hover:from-purple-700 hover:to-pink-700 transition-all duration-300"
+                >
+                  <span className="relative">
+                    Explore Feature
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover/link:w-full transition-all duration-300"></span>
+                  </span>
+                  <FiArrowRight className="ml-2 w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-300" />
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA Section */}
+        <div className="relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 rounded-3xl blur-xl opacity-30"></div>
+          <div className="relative bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 rounded-3xl overflow-hidden">
+            {/* Animated background pattern */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 animate-pulse"></div>
+            </div>
+            
+            <div className="relative p-12 text-center">
+              <div className="mb-6">
+                <h3 className="text-4xl font-black text-white mb-4">
+                  Ready to Experience
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+                    Premium Shopping?
+                  </span>
+                </h3>
+                <p className="text-xl text-slate-300 max-w-2xl mx-auto">
+                  Join thousands of satisfied customers who've elevated their shopping experience with our premium features.
+                </p>
+              </div>
+
+              <a
+                href="/signup"
+                className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-white to-slate-50 text-slate-900 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-white/25 hover:scale-105 transition-all duration-300"
+              >
+                <span className="relative">
+                  Start Your Premium Journey
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-full transition-all duration-300"></span>
+                </span>
+                <div className="ml-3 p-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg group-hover:rotate-45 transition-transform duration-300">
+                  <FiArrowRight className="w-4 h-4 text-white" />
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
+    </section>
+  );
+};
+
+export default PremiumFeaturesSection;
