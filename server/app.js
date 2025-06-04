@@ -11,15 +11,13 @@ app.use(cors({
   credentials: true
 }));
 
-app.use(express.json());
+app.use(express.json({ limit: "10000mb" }));
+app.use(express.urlencoded({ extended: true, limit: "10000mb" }));
 app.use(cookieParser());
 app.get("/", (req, res) => {
   res.send("Hello world!");
 });
 
-app.use(bodyParser.urlencoded({ extended: true, limit: "10000mb" }));
-app.use(express.urlencoded({ extended: true, limit: "10000mb" })); 
-app.use(express.json({ limit: '10000mb' }));
 
 // config
 if (process.env.NODE_ENV !== "PRODUCTION") { 

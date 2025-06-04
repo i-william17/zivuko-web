@@ -10,14 +10,18 @@ const sendToken = require("../utils/jwtToken");
 const { isAuthenticated, isAdmin } = require("../middleware/auth");
 
 // create user
-router.post("/create-user", catchAsyncErrors (async (req, res, next) => {
+router.post("/create-user", catchAsyncErrors(async (req, res, next) => {
   try {
     const { name, email, avatar, password } = req.body;
+    if (avatar && Buffer.byteLength(avatar, 'base64') > 5 * 1024 * 1024) {
+      return res.status(400).json({ message: "Avatar image is too large" });
+    }
+
     const userEmail = await User.findOne({ email });
 
     if (userEmail) {
       return next(new ErrorHandler("User already exists", 400));
-    } 
+    }
 
     const myCloud = await cloudinary.v2.uploader.upload(avatar, {
       folder: "avatars",
@@ -41,8 +45,43 @@ router.post("/create-user", catchAsyncErrors (async (req, res, next) => {
       await sendMail({
         email: user.email,
         subject: "Activate your account",
-        message: `Hello ${user.name}, please click on the link to activate your account: ${activationUrl}`,
+        message: `Hello ${user.name}, please activate your account: ${activationUrl}`,
+        html: `
+    <div style="font-family: Arial, sans-serif; padding: 20px; color: #333; max-width: 600px; margin: auto;">
+      <div style="text-align: center; margin-bottom: 30px;">
+        <img src="https://res.cloudinary.com/ducckh8ip/image/upload/v1748963904/1-nobg_pw4jaj.png" alt="Zivuko Logo" style="height: 100px;" />
+      </div>
+
+      <h2 style="color: #0F766E;">Welcome to Zivuko, ${user.name}!</h2>
+      <p>Thank you for registering with us.</p>
+      <p>Please click the button below to activate your account:</p>
+
+      <div style="margin: 20px 0;">
+        <a href="${activationUrl}" style="
+          display: inline-block;
+          padding: 12px 24px;
+          background-color: #0F766E;
+          color: #fff;
+          text-decoration: none;
+          border-radius: 5px;
+          font-weight: bold;
+        ">
+          Activate Account
+        </a>
+      </div>
+
+      <p style="color: #555;">If you didn’t sign up for this account, you can safely ignore this email.</p>
+
+      <hr style="margin: 30px 0; border: none; border-top: 1px solid #eee;" />
+
+      <footer style="font-size: 12px; color: #999; text-align: center;">
+        &copy; ${new Date().getFullYear()} Zivuko. All rights reserved.
+      </footer>
+    </div>
+  `,
       });
+
+
       res.status(201).json({
         success: true,
         message: `please check your email:- ${user.email} to activate your account!`,
@@ -64,7 +103,7 @@ const createActivationToken = (user) => {
 
 // activate user
 router.post(
-  "/activation", 
+  "/activation",
   catchAsyncErrors(async (req, res, next) => {
     try {
       const { activation_token } = req.body;

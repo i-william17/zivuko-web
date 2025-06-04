@@ -1,0 +1,177 @@
+.dashboard-container {
+    padding: 20px 32px;
+    background-color: #1e1e2d;
+    min-height: 100vh;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 24px;
+}
+
+@media (min-width: 640px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.dashboard-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    background-color: #283046;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.dashboard-card:hover {
+    transform: scale(1.05);
+}
+
+.dashboard-card-content {
+    display: flex;
+    flex-direction: column;
+    color: #d0d2d6;
+}
+
+.dashboard-card-title {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.dashboard-card-subtitle {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.dashboard-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard-icon {
+    font-size: 24px;
+}
+
+.dashboard-icon-dollar {
+    color: #28c76f;
+    background-color: #28c76f1f;
+}
+
+.dashboard-icon-product {
+    color: #cd00e8;
+    background-color: #e000e81f;
+}
+
+.dashboard-icon-users {
+    color: #00cfe8;
+    background-color: #00cfe81f;
+}
+
+.dashboard-icon-cart {
+    color: #7367f0;
+    background-color: #7367f01f;
+}
+
+.dashboard-flex {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 32px;
+}
+
+.dashboard-left {
+    width: 100%;
+    padding-right: 0;
+    margin-bottom: 24px;
+}
+
+@media (min-width: 1024px) {
+    .dashboard-left {
+        width: 58.333%;
+        padding-right: 16px;
+        margin-bottom: 0;
+    }
+}
+
+.dashboard-right {
+    width: 100%;
+    padding-left: 0;
+}
+
+@media (min-width: 1024px) {
+    .dashboard-right {
+        width: 41.667%;
+        padding-left: 16px;
+    }
+}
+
+.dashboard-chart-container, 
+.dashboard-recent-messages,
+.dashboard-orders {
+    background-color: #283046;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-recent-header, 
+.dashboard-orders-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.dashboard-recent-title, 
+.dashboard-orders-title {
+    font-weight: 600;
+    font-size: 18px;
+    color: #d0d2d6;
+}
+
+.dashboard-recent-link, 
+.dashboard-orders-link {
+    font-size: 14px;
+    font-weight: 600;
+    color: #d0d2d6;
+    transition: color 0.3s ease-in-out;
+}
+
+.dashboard-recent-link:hover, 
+.dashboard-orders-link:hover {
+    color: #28c76f;
+}
+
+.dashboard-table-wrapper {
+    position: relative;
+    overflow-x: auto;
+}
+
+.dashboard-table {
+    width: 100%;
+    text-align: left;
+    color: #d0d2d6;
+    font-size: 14px;
+}
+
+.dashboard-table-header {
+    text-transform: uppercase;
+    border-bottom: 1px solid #2a2e35;
+}
+
+.dashboard-table-heading {
+    padding: 12px 16px;
+}
