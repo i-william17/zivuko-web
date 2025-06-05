@@ -1,150 +1,177 @@
-"use client";
+'use client';
 
 import { useState } from "react";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { AiOutlineEye, AiOutlineEyeInvisible, AiOutlineCheckCircle } from "react-icons/ai";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { server } from "../../server";
 import { useRouter } from "next/navigation";
-import { server } from "@/server";
 
-const ShopLogin = () => {
-  const router = useRouter();
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     try {
       const res = await axios.post(
-        `${server}/shop/login-shop`,
+        `${server}/user/login-user`,
         { email, password },
         { withCredentials: true }
       );
-      
-      toast.success("Login Success!");
-      router.push("/dashboard");
-      // Consider using router.refresh() instead of window.location.reload
-      setTimeout(() => window.location.reload(), 100);
-    } catch (err: any) {
+
+      toast.success(
+        <div className="flex items-center gap-2">
+          <AiOutlineCheckCircle className="text-green-500 text-xl" />
+          <span>Login Success!</span>
+        </div>
+      );
+
+      await router.push("/");
+    } catch (err) {
       toast.error(err.response?.data?.message || "Login failed");
+      setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-[url('/bg-custom-bg3.jpg')] bg-center bg-cover">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Welcome Back to Your <span className="text-blue-600">Shop</span>
-        </h2>
-        <p className="mt-2 text-center text-sm text-gray-600">
-          Sign in to manage your products and orders
+        <motion.h2 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mt-6 text-center text-3xl font-extrabold text-gray-900"
+        >
+          Login to your account
+        </motion.h2>
+        <p className="mt-2 text-center text-sm text-gray-700">
+          Enter your credentials to continue
         </p>
       </div>
-
+      
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-6 shadow-lg rounded-xl border border-gray-100 sm:px-10">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="bg-white/90 backdrop-blur-sm py-8 px-6 shadow-lg sm:rounded-xl sm:px-10 border border-gray-200"
+        >
           <form className="space-y-6" onSubmit={handleSubmit}>
-            {/* Email Field */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-800">
                 Email address
               </label>
               <div className="mt-1">
                 <input
                   type="email"
+                  id="email"
                   name="email"
                   autoComplete="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full px-4 py-3 rounded-lg border border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400 transition duration-200"
+                  className="block w-full px-4 py-2.5 text-gray-900 border border-gray-300 rounded-lg shadow-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
               </div>
             </div>
 
-            {/* Password Field */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-800">
                 Password
               </label>
               <div className="mt-1 relative">
                 <input
                   type={visible ? "text" : "password"}
+                  id="password"
                   name="password"
                   autoComplete="current-password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full px-4 py-3 rounded-lg border border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400 transition duration-200"
+                  className="block w-full px-4 py-2.5 text-gray-900 border border-gray-300 rounded-lg shadow-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
-                <button
-                  type="button"
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                  onClick={() => setVisible(!visible)}
-                >
-                  {visible ? (
-                    <AiOutlineEye className="h-5 w-5 text-gray-500 hover:text-blue-600" />
-                  ) : (
-                    <AiOutlineEyeInvisible className="h-5 w-5 text-gray-500 hover:text-blue-600" />
-                  )}
-                </button>
+                {visible ? (
+                  <AiOutlineEye
+                    className="absolute right-3 top-3 cursor-pointer text-gray-600 hover:text-gray-800"
+                    size={20}
+                    onClick={() => setVisible(false)}
+                  />
+                ) : (
+                  <AiOutlineEyeInvisible
+                    className="absolute right-3 top-3 cursor-pointer text-gray-600 hover:text-gray-800"
+                    size={20}
+                    onClick={() => setVisible(true)}
+                  />
+                )}
               </div>
             </div>
 
-            {/* Remember Me & Forgot Password */}
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <input
                   type="checkbox"
-                  name="remember-me"
                   id="remember-me"
-                  checked={rememberMe}
-                  onChange={(e) => setRememberMe(e.target.checked)}
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  name="remember-me"
+                  className="h-4 w-4 text-blue-500 focus:ring-blue-400 border-gray-300 rounded bg-white/5"
                 />
-                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-800">
                   Remember me
                 </label>
               </div>
               <div className="text-sm">
                 <Link
                   href="/forgot-password"
-                  className="font-medium text-blue-600 hover:text-blue-500 transition duration-200"
+                  className="font-medium text-blue-600 hover:text-blue-500 hover:underline"
                 >
                   Forgot password?
                 </Link>
               </div>
             </div>
 
-            {/* Submit Button */}
-            <div>
+            <motion.div
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
+            >
               <button
                 type="submit"
-                className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-200"
+                disabled={isSubmitting}
+                className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white ${isSubmitting ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700'} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors`}
               >
-                Sign in
+                {isSubmitting ? (
+                  <span className="flex items-center">
+                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Signing in...
+                  </span>
+                ) : (
+                  "Sign in"
+                )}
               </button>
-            </div>
-
-            {/* Sign Up Link */}
-            <div className="flex items-center justify-center text-sm">
-              <span className="text-gray-600">Don't have an account?</span>
-              <Link 
-                href="/shop-create" 
-                className="ml-2 font-medium text-blue-600 hover:text-blue-500 transition duration-200"
-              >
-                Sign up
-              </Link>
+            </motion.div>
+            
+            <div className="text-center text-sm text-gray-700">
+              <p>
+                Don't have an account?{' '}
+                <Link href="/sign-up" className="font-medium text-blue-600 hover:text-blue-500 hover:underline">
+                  Sign up here
+                </Link>
+              </p>
             </div>
           </form>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
 };
 
-export default ShopLogin;
+export default Login;

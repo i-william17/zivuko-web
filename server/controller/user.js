@@ -107,6 +107,10 @@ router.post(
   catchAsyncErrors(async (req, res, next) => {
     try {
       const { activation_token } = req.body;
+      if (!activation_token) {
+        return next(new ErrorHandler("Please provide the activation token", 400));
+      }
+      console.log("Activation token:", activation_token);
 
       const newUser = jwt.verify(
         activation_token,

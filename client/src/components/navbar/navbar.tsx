@@ -87,7 +87,7 @@ const Header = ({ activeHeading }) => {
           {/* Right side - Navigation links */}
           <div className="flex items-center space-x-4 sm:space-x-6">
             <Link
-              href="/signup"
+              href="/user-signup"
               className="flex items-center hover:text-[#2ECC71] transition-all duration-300 group"
             >
               <FiUserPlus className="mr-1.5 group-hover:scale-110 transition-transform" />
@@ -95,7 +95,7 @@ const Header = ({ activeHeading }) => {
             </Link>
 
             <Link
-              href="/login"
+              href="/user-login"
               className="flex items-center hover:text-[#2ECC71] transition-all duration-300 group"
             >
               <FiLogIn className="mr-1.5 group-hover:scale-110 transition-transform" />
