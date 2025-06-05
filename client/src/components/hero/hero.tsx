@@ -13,7 +13,7 @@ import {
   FiUsers,
   FiAward,
   FiShield,
-  FiArrowRight
+  FiArrowRight,
 } from 'react-icons/fi';
 import { FaLeaf } from 'react-icons/fa';
 
@@ -26,6 +26,7 @@ const HeroSection = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
   const features = [
     {
       name: 'Zivuko Wallet',
@@ -113,9 +114,23 @@ const HeroSection = () => {
   return (
     <div className="z-0 bg-white text-gray-900 dark:bg-gray-900 dark:text-white">
       {/* Hero Banner */}
-      <section className="relative h-screen overflow-hidden text-white animate-fade-in">
-
-        {/* Parallax Image with Overlay inside the image container only */}
+      <section
+        className="
+          relative 
+          min-h-[60vh]
+          h-[50vh] 
+          sm:h-[60vh] 
+          md:h-[70vh] 
+          lg:h-[80vh] 
+          xl:h-[90vh]
+          overflow-hidden 
+          text-white 
+          animate-fade-in 
+          flex items-center justify-center 
+          px-4 sm:px-8
+        "
+      >
+        {/* Background Image with Overlay */}
         <div
           className="absolute inset-0 z-0"
           style={{
@@ -131,16 +146,16 @@ const HeroSection = () => {
               objectFit="cover"
               priority
               className="brightness-50"
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
-            {/* Gradient overlay ONLY ON IMAGE */}
             <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-transparent" />
           </div>
         </div>
 
-        {/* Text Content stays clean */}
-        <div className="relative max-w-7xl mx-auto h-full flex items-center px-6 lg:px-12">
+        {/* Text Content */}
+        <div className="relative container mx-auto h-full flex items-center px-6 lg:px-12">
           <div className="lg:w-2/3">
-            <h1 className="relative text-5xl sm:text-6xl md:text-7xl font-extrabold leading-tight mb-8 tracking-tight">
+            <h1 className="relative text-3xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-6 tracking-tight break-words">
               <span className="block text-white">Shop Kenya’s Best</span>
               <span
                 className="block relative hollow-text hollow-glow"
@@ -149,7 +164,6 @@ const HeroSection = () => {
                 Online Marketplace
               </span>
             </h1>
-
 
             <p className="text-lg sm:text-xl text-gray-200 max-w-2xl mb-10 drop-shadow">
               Discover amazing products from local sellers across Kenya. Fast delivery, secure payments, and unbeatable prices.
@@ -172,27 +186,6 @@ const HeroSection = () => {
           </div>
         </div>
       </section>
-
-      {/* Branding Features */}
-      <div className="bg-[#F8F9FA] py-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {brandingData.map((item) => (
-              <div key={item.id} className="flex items-center p-4 bg-white rounded-lg shadow-sm">
-                <div className="mr-4 text-[#2ECC71]">
-                  {item.icon}
-                </div>
-                <div>
-                  <h3 className="font-medium text-gray-900">{item.title}</h3>
-                  <p className="text-sm text-gray-500">{item.Description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-
 
       {/* Promo Banner */}
       {/* <div className="bg-primary text-white py-16 px-4 sm:px-6 lg:px-8 rounded-none">

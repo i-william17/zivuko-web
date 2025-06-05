@@ -1,6 +1,11 @@
 import { ReactNode } from 'react';
 import Navbar from '../../components/navbar/navbar';
-import Hero from '../../components/hero/hero'
+import Hero from '../../components/hero/hero';
+import Categories from '../../components/Route/Categories/Categories';
+import BestDeals from '../../components/Route/BestDeals/BestDeals';
+import FeaturedProduct from '../../components/Route/FeaturedProduct/FeaturedProduct';
+import Events from '../../components/Events/Events';
+import Sponsored from '../../components/Route/Sponsored'
 import Description from '../../components/description/description';
 import Footer from '../../components/footer/footer'; 
 
@@ -18,6 +23,23 @@ export default function MainLayout({ children }: LayoutProps) {
 
       {/* Hero */}
       <Hero/>
+
+      {/* Categories */}
+      <Categories />
+
+      {/* Best Deals */}
+      <BestDeals />
+      
+      {/* Featured Products */} 
+      <FeaturedProduct />
+
+      {/* Events */}
+      <Events />
+      
+      {/* Sponsored */}
+      <Sponsored />
+
+      {/* Description */}
 
       {/* Footer */}
       <Footer />

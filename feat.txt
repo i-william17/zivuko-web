@@ -10,3 +10,4 @@
 
 nunuakwetu
 mongodb+srv://williamsisulu2003:nunuakwetu@buy.if37nre.mongodb.net/?retryWrites=true&w=majority&appName=buy
+https://res.cloudinary.com/ducckh8ip/image/upload/v1748963904/1-nobg_pw4jaj.png

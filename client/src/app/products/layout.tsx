@@ -6,7 +6,7 @@ interface LayoutProps {
 
 export default function SignInLayout({ children }: LayoutProps) {
     return(
-        <div className="flex justify-center items-center h-screen">
+        <div>
             {children}
         </div>
     );
